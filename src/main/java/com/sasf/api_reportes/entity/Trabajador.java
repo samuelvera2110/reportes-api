@@ -10,12 +10,11 @@ import lombok.Setter;
 public class Trabajador extends AuditableEntity{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_trabajador")
     private Integer idTrabajador;
 
     private String nombre;
     private String correo;
-    private String contrasena;
 
 }

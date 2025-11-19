@@ -5,11 +5,12 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Getter @Setter
-public class TrabajadorRequest {
+@Getter
+@Setter
+public class TrabajadorDetallesDto {
 
+    private Integer idTrabajador;
     private String nombre;
     private String correo;
-    private String contrasena;
-
+    private LocalDate fechaCreacion;
 }

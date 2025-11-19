@@ -1,9 +1,10 @@
 package com.sasf.api_reportes.controller;
 
+import com.sasf.api_reportes.dto.ReporteDto;
 import com.sasf.api_reportes.dto.TrabajadorDetallesDto;
-import com.sasf.api_reportes.dto.TrabajadorDto;
-import com.sasf.api_reportes.service.TrabajadorService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.sasf.api_reportes.entity.Reporte;
+import com.sasf.api_reportes.service.ReporteService;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -13,14 +14,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/trabajadores")
-public class TrabajadorController {
+@RequestMapping("/reportes")
+@AllArgsConstructor
+public class ReporteController {
 
-    @Autowired
-    private TrabajadorService service;
+    private final ReporteService service;
 
     @GetMapping
-    public ResponseEntity<Page<TrabajadorDetallesDto>> getAll(
+    public ResponseEntity<Page<ReporteDto>> getAll(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size
     ){
@@ -29,14 +30,8 @@ public class TrabajadorController {
     }
 
     @GetMapping("/{id}")
-    public Optional<TrabajadorDetallesDto> getById(@PathVariable int id){
+    public Optional<ReporteDto> getById(@PathVariable int id){
         return service.getById(id);
-    }
-
-    @PostMapping
-    public ResponseEntity<TrabajadorDto> save(@RequestBody TrabajadorDto request){
-        TrabajadorDto trabajador = service.save(request);
-        return ResponseEntity.ok(trabajador);
     }
 
     @DeleteMapping("/{id}")
@@ -44,12 +39,10 @@ public class TrabajadorController {
         return ResponseEntity.ok(service.deleteById(id));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<TrabajadorDto> update(
-            @PathVariable int id,
-            @RequestBody TrabajadorDto trabajador
-    ){
-        return ResponseEntity.ok(service.update(id, trabajador));
+    @PostMapping
+    public ResponseEntity<ReporteDto> save(@RequestBody ReporteDto reporteDto){
+        ReporteDto reporte = service.save(reporteDto);
+        return ResponseEntity.ok(reporte);
     }
 
 }

@@ -9,9 +9,7 @@ import java.time.LocalDate;
 @Setter
 public class TrabajadorDto {
 
-    private int idTrabajador;
     private String nombre;
     private String correo;
-    private LocalDate fechaCreacion;
 
 }
