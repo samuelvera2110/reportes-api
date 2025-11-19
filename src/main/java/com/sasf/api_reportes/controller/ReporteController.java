@@ -1,8 +1,6 @@
 package com.sasf.api_reportes.controller;
 
 import com.sasf.api_reportes.dto.ReporteDto;
-import com.sasf.api_reportes.dto.TrabajadorDetallesDto;
-import com.sasf.api_reportes.entity.Reporte;
 import com.sasf.api_reportes.service.ReporteService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -43,6 +41,14 @@ public class ReporteController {
     public ResponseEntity<ReporteDto> save(@RequestBody ReporteDto reporteDto){
         ReporteDto reporte = service.save(reporteDto);
         return ResponseEntity.ok(reporte);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ReporteDto> update(
+            @PathVariable int id,
+            @RequestBody ReporteDto reporte
+    ){
+        return ResponseEntity.ok(service.update(id, reporte));
     }
 
 }
